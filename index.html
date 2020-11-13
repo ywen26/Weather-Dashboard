@@ -15,24 +15,26 @@
     <div class="container row">
         <div class="bg-light col-lg-3 py-3">
             <h4>Search for a city:</h4>
-            <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="City Name" aria-label="Recipient's username" aria-describedby="button-addon2">
+            <form class="input-group mb-3">
+                <input type="text" id="city-input" class="form-control" placeholder="City Name" aria-label="Recipient's username" aria-describedby="button-addon2">
                 <div class="input-group-append">
-                    <button class="btn btn-outline-white bg-primary" type="button" >
+                    <button id ="add-city" class="btn btn-outline-white bg-primary" type="submit" >
                         <i class="fas fa-search text-white"></i>
                     </button>
                 </div>
-            </div>
-            <div> </div>
+            </form>
+            <div id="cities-view"> </div>
         </div>
 
         <div class="border border-right-0 col-lg-9">
             <div class="card-body border-right-0">
               This is some text within a card body.
             </div>
-          </div>
+        </div>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="script.js"></script>
     
 </body>
 </html>
