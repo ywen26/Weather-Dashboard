@@ -1,5 +1,8 @@
 // var cities = [];
 var citiesEl = $("#cities-view");
+var apiKey = "a9d9a4fb7b847a29b51b4fde79748585";
+// var apiKey = "a9d9a4fb7b847a29b51b4fde79748585";
+// var queryURL = "api.openweathermap.org/data/2.5/weather?q=Seattle&appid=" + apiKey;
 
 // function renderCities() {
 //     $("#cities-view").empty();
@@ -27,10 +30,38 @@ $("#add-city").on("click", function(event) {
     var newAddCity = JSON.stringify(cityList);
     localStorage.setItem("cityList", newAddCity);
     // var inputEl = $("#city-input").val();
-    // var citiesEl = $("<p>").text(inputEl);
-    // $("#cities-view").prepend(citiesEl);
+    var citiesEl2 = $("<p>").text(inputEl);
+    $("#cities-view").prepend(citiesEl2);
     // renderCities();
-    location.reload();
+    // location.reload();
+    var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + inputEl + "&appid=" + apiKey;
+
+    $.ajax({
+        url:queryURL,
+        method: "GET"
+    }).then(function(response) {
+        console.log(response);
+        var today = moment();
+        $("#city").text(inputEl + today.format(" (MM/DD/YYYY)"));
+        //$("#today").text(today.format("MM/DD/YYYY"));
+        var tempF = (response.main.temp - 273.15) * 1.80 + 32;
+        $("#temp").text("Temperature: " + tempF.toFixed(2) + " °F");
+        $("#wind").text("Wind Speed: " + response.wind.speed + " MPH");
+        $("#humidity").text("Humidity: " + response.main.humidity + "%");
+        
+        var uvIndexURL = "http://api.openweathermap.org/data/2.5/uvi?lat=" + response.coord.lat + "&lon=" + response.coord.lon + "&appid=" + apiKey;
+
+        $.ajax({
+            url: uvIndexURL,
+            method: "GET"
+        }).then(function(response2) {
+            console.log(response2);
+            $("#uvIndex").text("UV Index: " + response2.value);
+        });
+
+    });
+
+    $("#city-input").val("");
 });
 
 // renderCities();
@@ -47,13 +78,25 @@ if (cityList !== null) {
 }
 
 var clear = $("<button>");
-$("#info").append(clear);
+$("#clear").append(clear);
 clear.on("click", function() {
     localStorage.clear();
     location.reload();
-})
+});
 
+// function currentWeather() {
+//     var apiKey = "a9d9a4fb7b847a29b51b4fde79748585";
+//     var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + inputEl + "&appid=" + apiKey;
 
-
-
-
+//     $.ajax({
+//         url:queryURL,
+//         method: "GET"
+//     }).then(function(response) {
+//         console.log(response);
+//         $("#city").text(inputEl);
+//         var tempF = (response.main.temp - 273.15) * 1.80 + 32;
+//         $("#temp").text("Temperature: " + tempF);
+//         $("#wind").text("Wind Speed: " + response.wind.speed + "MPH");
+//         $("#humidity").text("Humidity: " + response.main.humidity + "%");
+//     });
+// }
