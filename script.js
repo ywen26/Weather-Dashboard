@@ -43,7 +43,10 @@ $("#add-city").on("click", function(event) {
         console.log(response);
         var today = moment();
         $("#city").text(inputEl + today.format(" (MM/DD/YYYY)"));
-        //$("#today").text(today.format("MM/DD/YYYY"));
+
+        var imgURL = "http://openweathermap.org/img/wn/" + response.weather[0].icon + "@2x.png";
+        $("#weatherImg").attr("src", imgURL);
+
         var tempF = (response.main.temp - 273.15) * 1.80 + 32;
         $("#temp").text("Temperature: " + tempF.toFixed(2) + " °F");
         $("#wind").text("Wind Speed: " + response.wind.speed + " MPH");
@@ -58,7 +61,15 @@ $("#add-city").on("click", function(event) {
             console.log(response2);
             $("#uvIndex").text("UV Index: " + response2.value);
         });
+    });
 
+    var fiveDayURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + inputEl + "&appid=" + apiKey;
+
+    $.ajax({
+        url: fiveDayURL,
+        method: "GET"
+    }).then(function(response3) {
+        console.log(response3);
     });
 
     $("#city-input").val("");
