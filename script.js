@@ -70,6 +70,53 @@ $("#add-city").on("click", function(event) {
         method: "GET"
     }).then(function(response3) {
         console.log(response3);
+
+        $("#fiveDays").text("5-Day forecast:");
+
+        $("#day1").empty();
+        var date1 = response3.list[1].dt_txt.split(" ")[0];
+        $("#day1").append($("<p>").text(date1));
+        var imgDate1 = "http://openweathermap.org/img/wn/" + response3.list[1].weather[0].icon + "@2x.png";
+        $("#day1").append($("<img>").attr("src", imgDate1));
+        var tempDate1 = (response3.list[1].main.temp - 273.15) * 1.80 + 32;
+        $("#day1").append($("<p>").text("Temp: " + tempDate1.toFixed(2) + " °F"));
+        $("#day1").append($("<p>").text("Humidity: " + response3.list[1].main.humidity + "%"));
+
+        $("#day2").empty();
+        var date2 = response3.list[9].dt_txt.split(" ")[0];
+        $("#day2").append($("<p>").text(date2));
+        var imgDate2 = "http://openweathermap.org/img/wn/" + response3.list[9].weather[0].icon + "@2x.png";
+        $("#day2").append($("<img>").attr("src", imgDate2));
+        var tempDate2 = (response3.list[9].main.temp - 273.15) * 1.80 + 32;
+        $("#day2").append($("<p>").text("Temp: " + tempDate2.toFixed(2) + " °F"));
+        $("#day2").append($("<p>").text("Humidity: " + response3.list[9].main.humidity + "%"));
+
+        $("#day3").empty();
+        var date3 = response3.list[17].dt_txt.split(" ")[0];
+        $("#day3").append($("<p>").text(date3));
+        var imgDate3 = "http://openweathermap.org/img/wn/" + response3.list[17].weather[0].icon + "@2x.png";
+        $("#day3").append($("<img>").attr("src", imgDate3));
+        var tempDate3 = (response3.list[17].main.temp - 273.15) * 1.80 + 32;
+        $("#day3").append($("<p>").text("Temp: " + tempDate3.toFixed(2) + " °F"));
+        $("#day3").append($("<p>").text("Humidity: " + response3.list[17].main.humidity + "%"));
+
+        $("#day4").empty();
+        var date4 = response3.list[25].dt_txt.split(" ")[0];
+        $("#day4").append($("<p>").text(date4));
+        var imgDate4 = "http://openweathermap.org/img/wn/" + response3.list[25].weather[0].icon + "@2x.png";
+        $("#day4").append($("<img>").attr("src", imgDate4));
+        var tempDate4 = (response3.list[25].main.temp - 273.15) * 1.80 + 32;
+        $("#day4").append($("<p>").text("Temp: " + tempDate4.toFixed(2) + " °F"));
+        $("#day4").append($("<p>").text("Humidity: " + response3.list[25].main.humidity + "%"));
+
+        $("#day5").empty();
+        var date5 = response3.list[33].dt_txt.split(" ")[0];
+        $("#day5").append($("<p>").text(date5));
+        var imgDate5 = "http://openweathermap.org/img/wn/" + response3.list[33].weather[0].icon + "@2x.png";
+        $("#day5").append($("<img>").attr("src", imgDate5));
+        var tempDate5 = (response3.list[33].main.temp - 273.15) * 1.80 + 32;
+        $("#day5").append($("<p>").text("Temp: " + tempDate5.toFixed(2) + " °F"));
+        $("#day5").append($("<p>").text("Humidity: " + response3.list[33].main.humidity + "%"));
     });
 
     $("#city-input").val("");
