@@ -33,6 +33,7 @@ $("#add-city").on("click", function(event) {
     citiesEl2.text(inputEl);
     citiesEl2.addClass("cityRecord");
     $("#cities-view").prepend(citiesEl2);
+    searchHistory();
     
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + inputEl + "&appid=" + apiKey;
 
@@ -65,19 +66,19 @@ $("#add-city").on("click", function(event) {
                 $("#uvIndex").addClass("low");
             }
 
-            if (uvValue >= 2 && uvValue < 5) {
+            else if (uvValue >= 2 && uvValue < 5) {
                 $("#uvIndex").addClass("moderate");
             }
 
-            if (uvValue >= 5 && uvValue < 7) {
+            else if (uvValue >= 5 && uvValue < 7) {
                 $("#uvIndex").addClass("high");
             }
 
-            if (uvValue >= 7 && uvValue < 10) {
+            else if (uvValue >= 7 && uvValue < 10) {
                 $("#uvIndex").addClass("very-high");
             }
 
-            if (uvValue >= 10) {
+            else if (uvValue >= 10) {
                 $("#uvIndex").addClass("extreme");
             }
         });
@@ -154,6 +155,7 @@ if (cityList !== null) {
     }
 }
 
+function searchHistory() {
 $(".cityRecord").on("click", function(event) {
     event.preventDefault();
     var inputEl = $(this).text();
@@ -182,25 +184,26 @@ $(".cityRecord").on("click", function(event) {
             method: "GET"
         }).then(function(response2) {
             console.log(response2);
+
             $("#uvIndex").text("UV Index: " + response2.value);
             var uvValue = parseInt(response2.value);
             if (uvValue < 2) {
                 $("#uvIndex").addClass("low");
             }
 
-            if (uvValue >= 2 && uvValue < 5) {
+            else if (uvValue < 5) {
                 $("#uvIndex").addClass("moderate");
             }
 
-            if (uvValue >= 5 && uvValue < 7) {
+            else if (uvValue < 7) {
                 $("#uvIndex").addClass("high");
             }
 
-            if (uvValue >= 7 && uvValue < 10) {
+            else if (uvValue < 10) {
                 $("#uvIndex").addClass("very-high");
             }
 
-            if (uvValue >= 10) {
+            else {
                 $("#uvIndex").addClass("extreme");
             }
         });
@@ -263,6 +266,9 @@ $(".cityRecord").on("click", function(event) {
     });
 
 })
+}
+
+searchHistory();
 
 var clear = $("<button>");
 $("#clear").append(clear);
