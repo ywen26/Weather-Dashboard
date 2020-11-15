@@ -1,0 +1,7 @@
+.cityRecord {
+    border: solid 1px gray;
+    cursor: pointer;
+    background-color: white;
+    padding: 5px 0 5px 10px;
+    border-radius: 5px;
+}  

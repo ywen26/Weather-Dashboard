@@ -1,4 +1,3 @@
-// var cities = [];
 var citiesEl = $("#cities-view");
 var apiKey = "a9d9a4fb7b847a29b51b4fde79748585";
 // var apiKey = "a9d9a4fb7b847a29b51b4fde79748585";
@@ -30,7 +29,9 @@ $("#add-city").on("click", function(event) {
     var newAddCity = JSON.stringify(cityList);
     localStorage.setItem("cityList", newAddCity);
     // var inputEl = $("#city-input").val();
-    var citiesEl2 = $("<p>").text(inputEl);
+    var citiesEl2 = $("<p>");
+    citiesEl2.text(inputEl);
+    citiesEl2.addClass("cityRecord");
     $("#cities-view").prepend(citiesEl2);
     // renderCities();
     // location.reload();
@@ -122,8 +123,6 @@ $("#add-city").on("click", function(event) {
     $("#city-input").val("");
 });
 
-// renderCities();
-
 cityList = localStorage.getItem("cityList");
 cityList = JSON.parse(cityList);
 
@@ -131,9 +130,12 @@ if (cityList !== null) {
     for (var i = 0; i < cityList.length; i++) {
         var cities = $("<p>");
         cities.text(cityList[i].city);
+        cities.addClass("cityRecord");
         citiesEl.prepend(cities);
     }
 }
+
+
 
 var clear = $("<button>");
 $("#clear").append(clear);
@@ -141,20 +143,3 @@ clear.on("click", function() {
     localStorage.clear();
     location.reload();
 });
-
-// function currentWeather() {
-//     var apiKey = "a9d9a4fb7b847a29b51b4fde79748585";
-//     var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + inputEl + "&appid=" + apiKey;
-
-//     $.ajax({
-//         url:queryURL,
-//         method: "GET"
-//     }).then(function(response) {
-//         console.log(response);
-//         $("#city").text(inputEl);
-//         var tempF = (response.main.temp - 273.15) * 1.80 + 32;
-//         $("#temp").text("Temperature: " + tempF);
-//         $("#wind").text("Wind Speed: " + response.wind.speed + "MPH");
-//         $("#humidity").text("Humidity: " + response.main.humidity + "%");
-//     });
-// }
