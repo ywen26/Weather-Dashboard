@@ -60,6 +60,26 @@ $("#add-city").on("click", function(event) {
         }).then(function(response2) {
             console.log(response2);
             $("#uvIndex").text("UV Index: " + response2.value);
+            var uvValue = parseInt(response2.value);
+            if (uvValue < 2) {
+                $("#uvIndex").addClass("low");
+            }
+
+            if (uvValue >= 2 && uvValue < 5) {
+                $("#uvIndex").addClass("moderate");
+            }
+
+            if (uvValue >= 5 && uvValue < 7) {
+                $("#uvIndex").addClass("high");
+            }
+
+            if (uvValue >= 7 && uvValue < 10) {
+                $("#uvIndex").addClass("very-high");
+            }
+
+            if (uvValue >= 10) {
+                $("#uvIndex").addClass("extreme");
+            }
         });
     });
 
@@ -163,6 +183,26 @@ $(".cityRecord").on("click", function(event) {
         }).then(function(response2) {
             console.log(response2);
             $("#uvIndex").text("UV Index: " + response2.value);
+            var uvValue = parseInt(response2.value);
+            if (uvValue < 2) {
+                $("#uvIndex").addClass("low");
+            }
+
+            if (uvValue >= 2 && uvValue < 5) {
+                $("#uvIndex").addClass("moderate");
+            }
+
+            if (uvValue >= 5 && uvValue < 7) {
+                $("#uvIndex").addClass("high");
+            }
+
+            if (uvValue >= 7 && uvValue < 10) {
+                $("#uvIndex").addClass("very-high");
+            }
+
+            if (uvValue >= 10) {
+                $("#uvIndex").addClass("extreme");
+            }
         });
     });
 
