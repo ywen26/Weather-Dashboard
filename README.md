@@ -26,5 +26,12 @@ THEN I am presented with the last searched city forecast
 
 Below is an example to show how the weather data is displayed after the city is searched:
 
+## URL sources
 
+Feel free to check the web application: [https://ywen26.github.io/Weather-Dashboard/](https://ywen26.github.io/Weather-Dashboard/)
 
+And github repository: [https://github.com/ywen26/Weather-Dashboard](https://github.com/ywen26/Weather-Dashboard)
+
+## Credits
+
+Third-Party API: OpenWeather [https://openweathermap.org/api](https://openweathermap.org/api)
