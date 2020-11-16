@@ -1,15 +1,5 @@
 var citiesEl = $("#cities-view");
 var apiKey = "a9d9a4fb7b847a29b51b4fde79748585";
-// var apiKey = "a9d9a4fb7b847a29b51b4fde79748585";
-// var queryURL = "api.openweathermap.org/data/2.5/weather?q=Seattle&appid=" + apiKey;
-
-// function renderCities() {
-//     $("#cities-view").empty();
-//     for (i = 0; i < cities.length; i++) {
-//         var citiesEl = $("<p>").text(cities[i]);
-//         $("#cities-view").append(citiesEl);
-//     }
-// }
 
 $("#add-city").on("click", function(event) {
     event.preventDefault();
@@ -255,8 +245,7 @@ function uvIndicator(uvValue) {
 
 searchHistory();
 
-var clear = $("<button>");
-$("#clear").append(clear);
+var clear = $("#clear");
 clear.on("click", function() {
     localStorage.clear();
     location.reload();
