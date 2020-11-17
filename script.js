@@ -1,6 +1,7 @@
 var citiesEl = $("#cities-view");
 var apiKey = "a9d9a4fb7b847a29b51b4fde79748585";
 
+// Show the current weahter status and 5-day forecast when a city is search
 $("#add-city").on("click", function(event) {
     event.preventDefault();
     var inputEl = $("#city-input").val();
@@ -30,6 +31,7 @@ $("#add-city").on("click", function(event) {
     $("#city-input").val("");
 });
 
+// To show the search history each time when reload
 var cityList = localStorage.getItem("cityList");
 cityList = JSON.parse(cityList);
 
@@ -42,6 +44,7 @@ if (cityList !== null) {
     }
 }
 
+// Click on cities in search history and show again the weather data
 function searchHistory() {
     $(".cityRecord").on("click", function(event) {
         event.preventDefault();
@@ -50,7 +53,9 @@ function searchHistory() {
     })
 }
 
+// Connect to OpenWeather API to show required weather information
 function infoDisplay(inputEl) {
+    // Retrive data of city name, temperature, wind speed, humidity, and the weather icon
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + inputEl + "&appid=" + apiKey;
 
     $.ajax({
@@ -68,7 +73,8 @@ function infoDisplay(inputEl) {
         $("#temp").text("Temperature: " + tempF.toFixed(2) + " °F");
         $("#wind").text("Wind Speed: " + response.wind.speed + " MPH");
         $("#humidity").text("Humidity: " + response.main.humidity + "%");
-        
+
+        // Retrive data of UV Index
         var uvIndexURL = "https://api.openweathermap.org/data/2.5/uvi?lat=" + response.coord.lat + "&lon=" + response.coord.lon + "&appid=" + apiKey;
 
         $.ajax({
@@ -83,6 +89,7 @@ function infoDisplay(inputEl) {
         });
     });
 
+    // Retrieve data of incoming 5-day forecast
     var fiveDayURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + inputEl + "&appid=" + apiKey;
 
     $.ajax({
@@ -140,6 +147,7 @@ function infoDisplay(inputEl) {
     });
 }
 
+// Function to show different colors to indicate UV index
 function uvIndicator(uvValue) {
     if (uvValue < 3) {
         $("#uvIndex").css("background-color", "green");
@@ -162,8 +170,10 @@ function uvIndicator(uvValue) {
     }
 }
 
+// Call the data-present function in search history
 searchHistory();
 
+// Button function to clear search history
 var clear = $("#clear");
 clear.on("click", function() {
     localStorage.clear();
