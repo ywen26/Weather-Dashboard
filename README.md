@@ -22,6 +22,16 @@ WHEN I open the weather dashboard
 THEN I am presented with the last searched city forecast
 ```
 
+## Technologies Used
+
+* HTML
+* CSS
+* Javascript
+* JQuery
+* Bootstrap
+* AJAX
+* moment.js
+
 ## Appearance and Functionality
 
 Below is an example to show how the weather data is displayed after the city is searched:
